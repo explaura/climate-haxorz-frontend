@@ -1,34 +1,33 @@
 import "./App.css";
-import { Button } from "@material-ui/core";
-import RegionInput from "./components/Input/RegionInput";
-import InstanceTypeInput from "./components/Input/InstanceTypeInput";
-import UptimeInput from "./components/Input/UptimeInput";
-import ProgressBar from "./components/ProgressBar/ProgressBar";
+import TreeConsumption from "./components/Results/TreeConsumption";
 
 function App() {
-  const calculate = () => {
-    // TODO: start progress bar
-    //  call API
-    console.log("calculating");
-  };
+	const carbonEmissions = [
+		{
+			id: "Eucalyptus",
+			value: 17,
+			label: "Eucalyptus"
+		},
+		{
+			id: "Jacaranda",
+			value: 25,
+			label: "Jacaranda"
+		},
+		{
+			id: "Banksia",
+			value: 3,
+			label: "Banksia"
+		},
+		{
+			id: "Wattle",
+			value: 33,
+			label: "Wattle"
+		},
+	];
 
 	return (
-		<div className="App">
-      <table cellPadding="50px" cellSpacing="50px" border="0">
-        <tr>
-          <RegionInput />
-        </tr>
-        <tr>
-          <InstanceTypeInput />
-        </tr>
-        <tr>
-          <UptimeInput />
-        </tr>
-        <tr>
-          <Button color="primary" variant="contained" onClick={calculate}>Calculate</Button>
-        </tr>
-      </table>
-      {isCalculating && <ProgressBar />}
+		<div className="treez">
+				<TreeConsumption data={carbonEmissions}/>
 		</div>
 	);
 }
