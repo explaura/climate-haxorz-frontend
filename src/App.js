@@ -3,7 +3,7 @@ import { Button } from "@material-ui/core";
 import RegionInput from "./components/Input/RegionInput";
 import InstanceTypeInput from "./components/Input/InstanceTypeInput";
 import UptimeInput from "./components/Input/UptimeInput";
-import ProgressBar from "./components/ProgressBar/ProgressBar";
+import CalculateEmission from "./components/CalculateEmission";
 
 function App() {
   const calculate = () => {
@@ -14,7 +14,8 @@ function App() {
 
 	return (
 		<div className="App">
-      <table cellPadding="50px" cellSpacing="50px" border="0">
+      <CalculateEmission />
+      {/* <table cellPadding="50px" cellSpacing="50px" border="0">
         <tr>
           <RegionInput />
         </tr>
@@ -27,8 +28,7 @@ function App() {
         <tr>
           <Button color="primary" variant="contained" onClick={calculate}>Calculate</Button>
         </tr>
-      </table>
-      {isCalculating && <ProgressBar />}
+      </table> */}
 		</div>
 	);
 }

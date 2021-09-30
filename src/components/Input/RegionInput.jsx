@@ -1,9 +1,9 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 
 const RegionInput = ({ region }) => {
-	const handleChange = () => {
-		console.log("changed");
-	};
+	// const handleChange = () => {
+	// 	console.log("changed");
+	// };
 
 	return (
 		<FormControl fullWidth={true}>
@@ -13,7 +13,7 @@ const RegionInput = ({ region }) => {
 				id="region-select"
 				value={region}
 				label="Region"
-				onChange={handleChange}
+				// onChange={handleChange}
 			>
 				<MenuItem value={"ap-southeast-1"}>ap-southeast-1</MenuItem>
 				<MenuItem value={"ap-southeast-2"}>ap-southeast-2</MenuItem>

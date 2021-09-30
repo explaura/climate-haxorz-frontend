@@ -1,9 +1,9 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 
 const InstanceTypeInput = ({ instanceType }) => {
-	const handleChange = () => {
-		console.log("changed");
-	};
+	// const handleChange = () => {
+	// 	console.log("changed");
+	// };
 
 	return (
 		<FormControl fullWidth={true}>
@@ -13,7 +13,7 @@ const InstanceTypeInput = ({ instanceType }) => {
 				id="instance-type-select"
 				value={instanceType}
 				label="Instance Type"
-				onChange={handleChange}
+				// onChange={handleChange}
 			>
 				<MenuItem value={"a1.medium"}>a1.medium</MenuItem>
 				<MenuItem value={"a1.large"}>a1.large</MenuItem>
