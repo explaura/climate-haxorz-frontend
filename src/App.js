@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import { Button } from "@material-ui/core";
 import RegionInput from "./components/Input/RegionInput";
 import InstanceTypeInput from "./components/Input/InstanceTypeInput";
