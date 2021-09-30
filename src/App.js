@@ -14,15 +14,18 @@ function App() {
 	return (
     <div className="App">
         <div className="c-steps">
-          <PageContext.Provider value={{ activePage, setActivePage }}>
-            <section className={`c-steps__page ${activePage === CALCULATE_EMISSION_PAGE_KEY ? 'is-active' : ''}`}>
-              <CalculateEmission />
-            </section>
-            <section className={`c-steps__page ${activePage === TREE_CONSUMPTION_PAGE_KEY ? 'is-active' : ''}`}>
-              {/* <TreeConsumption /> */}
-              <CalculateEmission />
-            </section>
-          </PageContext.Provider>
+          <EmissionContext.Provider value={{ emission, setEmission }}>
+            <PageContext.Provider value={{ activePage, setActivePage }}>
+              <section className={`c-steps__page ${activePage === CALCULATE_EMISSION_PAGE_KEY ? 'is-active' : ''}`}>
+                <CalculateEmission />
+              </section>
+              <section className={`c-steps__page ${activePage === TREE_CONSUMPTION_PAGE_KEY ? 'is-active' : ''}`}>
+                {/* <TreeConsumption /> */}
+                dsds
+                <CalculateEmission />
+              </section>
+            </PageContext.Provider>
+          </EmissionContext.Provider>
         </div>
     </div>
 	);

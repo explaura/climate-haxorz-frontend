@@ -10,14 +10,16 @@
   &__page {
     width: 100%;
     height: 100%;
-    display: flex;
+    // display: flex;
     justify-content: center;
     align-items: center;
     // transform: translateX(-100vw);
+    display: none;
     transition: all 0.25s ease-in;
 
 
     &.is-active {
+      display: flex;
       // transform: translate(0);
     }
   }
