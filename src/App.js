@@ -10,7 +10,7 @@ import { CALCULATE_EMISSION_PAGE_KEY, TREE_CONSUMPTION_PAGE_KEY, PageContext } f
 function App() {
   const [emission, setEmission] = useState({});
   const [activePage, setActivePage] = useState(CALCULATE_EMISSION_PAGE_KEY)
-// do carousel thing here from library
+	// TODO: do carousel thing here from library
 
 	return (
     <div className="App">
