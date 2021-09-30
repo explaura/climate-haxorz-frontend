@@ -6,7 +6,7 @@ const InstanceTypeInput = ({ instanceType }) => {
 	// };
 
 	return (
-		<FormControl fullWidth={true}>
+		<>
 			<InputLabel id="instance-type-input-label">Instance Type</InputLabel>
 			<Select
 				labelId="instance-type-select-label"
@@ -22,7 +22,7 @@ const InstanceTypeInput = ({ instanceType }) => {
 				<MenuItem value={"a1.4xlarge"}>a1.4xlarge</MenuItem>
 				<MenuItem value={"a1.metal"}>a1.metal</MenuItem>
 			</Select>
-		</FormControl>
+		</>
 	)
 };
 

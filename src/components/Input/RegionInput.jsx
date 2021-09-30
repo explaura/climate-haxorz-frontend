@@ -6,7 +6,7 @@ const RegionInput = ({ region }) => {
 	// };
 
 	return (
-		<FormControl fullWidth={true}>
+		<>
 			<InputLabel id="region-input-label">Region</InputLabel>
 			<Select
 				labelId="region-select-label"
@@ -22,7 +22,7 @@ const RegionInput = ({ region }) => {
 				<MenuItem value={"us-east-1"}>us-east-1</MenuItem>
 				<MenuItem value={"us-east-2"}>us-east-2</MenuItem>
 			</Select>
-		</FormControl>
+		</>
 	)
 };
 
