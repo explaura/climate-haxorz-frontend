@@ -1,5 +1,6 @@
 import '../styles/calculate-emissions.scss';
 import { useContext, useState } from "react";
+import axios from 'axios';
 import { Select, MenuItem, Button, TextField, FormControl, InputLabel, Box, CircularProgress } from "@mui/material";
 import { EmissionContext } from '../providers/EmissionContext';
 import { PageContext } from '../providers/PageContext';
@@ -691,7 +692,13 @@ export default function CalculateEmission() {
 
         try {
             setLoading(true);
-            await new Promise((res) => setTimeout(res, 2000));
+            const { data } = await axios.get(`https://w1rw1437f3.execute-api.ap-southeast-2.amazonaws.com/v1/ec2-carbon-footprint?region=${region}&instanceType=${instanceType}&uptime=${uptime}`, {
+                headers: { "Content-Type": "application/json" },
+                mode: "cors",
+              });
+            console.log("response from API", data);
+            setLoading(false);
+
             if(setEmission) setEmission(mockEmission);
             if(setActivePage) setActivePage(TREE_CONSUMPTION_PAGE_KEY)
             console.log(activePage)
