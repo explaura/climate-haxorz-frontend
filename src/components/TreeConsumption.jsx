@@ -25,11 +25,9 @@ const carbonEmissions = [
     },
 ];
 
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
 const TreeConsumption = () => {
     const { emission } = useContext(EmissionContext);
+    console.log("emission", emission);
     
     return (
             <ResponsiveWaffle

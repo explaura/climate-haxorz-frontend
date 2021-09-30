@@ -658,33 +658,12 @@ const instanceTypeValues = [
     "db.t2.2xlarge"
 ]
 
-const mockEmission = {
-    "manufacturing": 16.2,
-    "running": {
-      "idle": "4.5",
-      "tenPercent": "7.2",
-      "fiftyPercent": "12.1",
-      "hundredPercent": "15.9"
-    },
-    "ecoProfile": [
-        {
-            "title": "Captain Pollution",
-            "min": 6,
-            "recommendations": [
-                "Quit your tech job",
-                "Get AWS certified",
-                "Eat more veggies"
-            ]
-        }
-    ]
-}
-
 export default function CalculateEmission() {
     const [region, setRegion] = useState(null);
     const [instanceType, setInstanceType] = useState(null);
     const [uptime, setUptime] = useState(1);
     const { activePage, setActivePage } = useContext(PageContext)
-    const { emission, setEmission } = useContext(EmissionContext);
+    const { setEmission } = useContext(EmissionContext);
     const [loading, setLoading] = useState(false);
 
     async function onSubmit (event) {
@@ -692,22 +671,17 @@ export default function CalculateEmission() {
 
         try {
             setLoading(true);
-            const { data } = await axios.get(`https://w1rw1437f3.execute-api.ap-southeast-2.amazonaws.com/v1/ec2-carbon-footprint?region=${region}&instanceType=${instanceType}&uptime=${uptime}`, {
+            const { data: emission } = await axios.get(`https://w1rw1437f3.execute-api.ap-southeast-2.amazonaws.com/v1/ec2-carbon-footprint?region=${region}&instanceType=${instanceType}&uptime=${uptime}`, {
                 headers: { "Content-Type": "application/json" },
                 mode: "cors",
               });
-            console.log("response from API", data);
-            setLoading(false);
-
-            if(setEmission) setEmission(mockEmission);
+            if(setEmission) setEmission(emission);
             if(setActivePage) setActivePage(TREE_CONSUMPTION_PAGE_KEY)
-            console.log(activePage)
         } catch (error) {
             console.error(error);
-        }
-
-        console.log({ region, instanceType, uptime });
-        setLoading(false);
+        } finally {
+					setLoading(false);
+				}
     }
 
     return (
