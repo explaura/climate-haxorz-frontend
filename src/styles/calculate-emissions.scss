@@ -1,0 +1,23 @@
+.c-calculate-emission {
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+    // margin: 2rem;
+
+    &__region {
+        // margin: 1rem 0;
+    }
+
+    &__instance-type {
+
+        // margin: 1rem 0;
+    }
+
+    &__uptime {
+        margin: 1rem 0;
+    }
+
+    &__submit {
+        padding: 1rem
+    }
+}
