@@ -1,38 +1,30 @@
 import "normalize.css";
-
 import "./App.scss";
 
-// import { Button } from "@material-ui/core";
-// import RegionInput from "./components/Input/RegionInput";
-// import InstanceTypeInput from "./components/Input/InstanceTypeInput";
-// import UptimeInput from "./components/Input/UptimeInput";
+import { useState } from "react";
 import CalculateEmission from "./components/CalculateEmission";
+import TreeConsumption from "./components/TreeConsumption";
+import { EmissionContext } from "./providers/EmissionContext";
+import { CALCULATE_EMISSION_PAGE_KEY, TREE_CONSUMPTION_PAGE_KEY, PageContext } from './providers/PageContext';
 
 function App() {
-  const calculate = () => {
-    // TODO: start progress bar
-    //  call API
-    console.log("calculating");
-  };
-
+  const [emission, setEmission] = useState(null);
+  const [activePage, setActivePage] = useState(CALCULATE_EMISSION_PAGE_KEY)
+// do carousel thing here from library
 	return (
-		<div className="App">
-      <CalculateEmission />
-      {/* <table cellPadding="50px" cellSpacing="50px" border="0">
-        <tr>
-          <RegionInput />
-        </tr>
-        <tr>
-          <InstanceTypeInput />
-        </tr>
-        <tr>
-          <UptimeInput />
-        </tr>
-        <tr>
-          <Button color="primary" variant="contained" onClick={calculate}>Calculate</Button>
-        </tr>
-      </table> */}
-		</div>
+    <div className="App">
+        <div className="c-steps">
+          <PageContext.Provider value={{ activePage, setActivePage }}>
+            <section className={`c-steps__page ${activePage === CALCULATE_EMISSION_PAGE_KEY ? 'is-active' : ''}`}>
+              <CalculateEmission />
+            </section>
+            <section className={`c-steps__page ${activePage === TREE_CONSUMPTION_PAGE_KEY ? 'is-active' : ''}`}>
+              {/* <TreeConsumption /> */}
+              <CalculateEmission />
+            </section>
+          </PageContext.Provider>
+        </div>
+    </div>
 	);
 }
 

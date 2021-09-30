@@ -1,6 +1,9 @@
 import '../styles/calculate-emissions.scss';
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Select, MenuItem, Button, TextField, FormControl, InputLabel, Box, CircularProgress } from "@mui/material";
+import { EmissionContext } from '../providers/EmissionContext';
+import { PageContext } from '../providers/PageContext';
+import { TREE_CONSUMPTION_PAGE_KEY } from '../providers/PageContext';
 
 const regionValues = [
     "us-east-2",
@@ -59,9 +62,9 @@ const mockEmission = {
 export default function CalculateEmission() {
     const [region, setRegion] = useState(null);
     const [instanceType, setInstanceType] = useState(null);
-    const [uptime, setUptime] = useState(0);
-
-    const [emission, setEmission] = useState();
+    const [uptime, setUptime] = useState(1);
+    const { activePage, setActivePage } = useContext(PageContext)
+    const { emission, setEmission } = useContext(EmissionContext);
     const [loading, setLoading] = useState(false);
 
     async function onSubmit (event) {
@@ -70,7 +73,9 @@ export default function CalculateEmission() {
         try {
             setLoading(true);
             await new Promise((res) => setTimeout(res, 2000));
-            setEmission(mockEmission);
+            if(setEmission) setEmission(mockEmission);
+            if(setActivePage) setActivePage(TREE_CONSUMPTION_PAGE_KEY)
+            console.log(activePage)
         } catch (error) {
             console.error(error);
         }
@@ -98,7 +103,7 @@ export default function CalculateEmission() {
                 </FormControl>
             </Box>
             <Box m={0.5}>
-                <TextField fullWidth className="c-calculate-emission__uptime" label="Uptime" value={uptime} type="number" onChange={(event) => setUptime(event.target.value)}/>
+                <TextField fullWidth className="c-calculate-emission__uptime" label="Uptime" value={uptime} type="number" onChange={(event) => setUptime((event.target.value < 1 ? 1 : event.target.value))}/>
             </Box>
             <Box m={0.5}>
                 <Button fullWidth size="large" className="c-calculate-emission__submit" type="submit" color="primary" variant="contained">{loading ? <CircularProgress size={25}/> : "Calculate Emission"}</Button>
