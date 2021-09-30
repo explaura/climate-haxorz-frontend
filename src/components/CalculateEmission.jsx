@@ -1,7 +1,7 @@
 import '../styles/calculate-emissions.scss';
 import { useContext, useState } from "react";
 import axios from 'axios';
-import { Select, MenuItem, Button, TextField, FormControl, InputLabel, Box, CircularProgress } from "@mui/material";
+import { Select, MenuItem, Button, TextField, FormControl, InputLabel, Box, CircularProgress, Autocomplete } from "@mui/material";
 import { EmissionContext } from '../providers/EmissionContext';
 import { PageContext } from '../providers/PageContext';
 import { TREE_CONSUMPTION_PAGE_KEY } from '../providers/PageContext';
@@ -696,10 +696,15 @@ export default function CalculateEmission() {
             </Box>
             <Box m={0.5}>
                 <FormControl fullWidth className="c-calculate-emission__instance-type">
-                    <InputLabel>Instance Type</InputLabel>
-                    <Select type="select" value={instanceType} onChange={(event) => setInstanceType(event.target.value)}>
-                        {instanceTypeValues.map(instanceTypeValue => <MenuItem key={instanceTypeValue} value={instanceTypeValue}>{instanceTypeValue}</MenuItem>)}
-                    </Select>
+                    <Autocomplete
+                        disablePortal
+                        id="instance-type-autocomplete"
+                        options={instanceTypeValues}
+                        renderInput={(params) => <TextField {...params} label="Instance Type" />}
+                        onChange={(event) => {
+                            setInstanceType(event.target.textContent)
+                        }}
+                    />
                 </FormControl>
             </Box>
             <Box m={0.5}>
