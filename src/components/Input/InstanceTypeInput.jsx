@@ -6,7 +6,7 @@ const InstanceTypeInput = ({ instanceType }) => {
 	};
 
 	return (
-		<FormControl>
+		<FormControl fullWidth={true}>
 			<InputLabel id="instance-type-input-label">Instance Type</InputLabel>
 			<Select
 				labelId="instance-type-select-label"

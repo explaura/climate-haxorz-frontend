@@ -6,7 +6,7 @@ const RegionInput = ({ region }) => {
 	};
 
 	return (
-		<FormControl>
+		<FormControl fullWidth={true}>
 			<InputLabel id="region-input-label">Region</InputLabel>
 			<Select
 				labelId="region-select-label"
