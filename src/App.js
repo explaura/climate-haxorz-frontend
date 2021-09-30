@@ -8,9 +8,10 @@ import { EmissionContext } from "./providers/EmissionContext";
 import { CALCULATE_EMISSION_PAGE_KEY, TREE_CONSUMPTION_PAGE_KEY, PageContext } from './providers/PageContext';
 
 function App() {
-  const [emission, setEmission] = useState(null);
+  const [emission, setEmission] = useState({});
   const [activePage, setActivePage] = useState(CALCULATE_EMISSION_PAGE_KEY)
 // do carousel thing here from library
+
 	return (
     <div className="App">
         <div className="c-steps">
@@ -20,9 +21,9 @@ function App() {
                 <CalculateEmission />
               </section>
               <section className={`c-steps__page ${activePage === TREE_CONSUMPTION_PAGE_KEY ? 'is-active' : ''}`}>
-                {/* <TreeConsumption /> */}
-                dsds
-                <CalculateEmission />
+                <TreeConsumption />
+                {/* dsds
+                <CalculateEmission /> */}
               </section>
             </PageContext.Provider>
           </EmissionContext.Provider>
