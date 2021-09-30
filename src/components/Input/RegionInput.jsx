@@ -1,6 +1,6 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 
-const Input = ({ region }) => {
+const RegionInput = ({ region }) => {
 	const handleChange = () => {
 		console.log("changed");
 	};
@@ -26,4 +26,4 @@ const Input = ({ region }) => {
 	)
 };
 
-export default Input;
+export default RegionInput;
