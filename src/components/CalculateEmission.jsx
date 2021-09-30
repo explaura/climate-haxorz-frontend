@@ -1,5 +1,6 @@
 import '../styles/calculate-emissions.scss';
 import { useState } from "react";
+import { Select, MenuItem, Button, TextField, FormControl, InputLabel, Box, CircularProgress } from "@mui/material";
 
 const regionValues = [
     "us-east-2",
@@ -34,43 +35,74 @@ const instanceTypeValues = [
     "t2.nano"
 ]
 
+const mockEmission = {
+    "manufacturing": 16.2,
+    "running": {
+      "idle": "4.5",
+      "tenPercent": "7.2",
+      "fiftyPercent": "12.1",
+      "hundredPercent": "15.9"
+    },
+    "ecoProfile": [
+        {
+            "title": "Captain Pollution",
+            "min": 6,
+            "recommendations": [
+                "Quit your tech job",
+                "Get AWS certified",
+                "Eat more veggies"
+            ]
+        }
+    ]
+}
+
 export default function CalculateEmission() {
-    const [region, setRegion] = useState(regionValues[0]);
-    const [instanceType, setInstanceType] = useState(instanceTypeValues[0]);
+    const [region, setRegion] = useState(null);
+    const [instanceType, setInstanceType] = useState(null);
     const [uptime, setUptime] = useState(0);
 
     const [emission, setEmission] = useState();
+    const [loading, setLoading] = useState(false);
 
     async function onSubmit (event) {
         event.preventDefault();
-        console.log({
-            region, instanceType, uptime
-        });
 
         try {
-            
+            setLoading(true);
+            await new Promise((res) => setTimeout(res, 2000));
+            setEmission(mockEmission);
         } catch (error) {
-            
+            console.error(error);
         }
+
+        console.log({ region, instanceType, uptime });
+        setLoading(false);
     }
 
     return (
-        <>
-            <form onSubmit={onSubmit} className="c-calculate-emission">
-                <select type="select" value={region} onChange={(event) => setRegion(event.target.value)}>
-                    {regionValues.map(regionValue => <option key={regionValue} value={regionValue}>{regionValue}</option>)}
-                </select>
-                <select type="select" value={instanceType} onChange={(event) => setInstanceType(event.target.value)}>
-                    {instanceTypeValues.map(instanceTypeValue => <option key={instanceTypeValue} value={instanceTypeValue}>{instanceTypeValue}</option>)}
-                </select>
-                <div>
-                    <label>Uptime</label>
-                    <input value={uptime} type="number" onChange={(event) => setUptime(event.target.value)}/>
-                </div>
-
-                <button type="submit" >Submit</button>
-            </form>
-            <div>{JSON.stringify(emission)}</div>
-        </>
+        <form onSubmit={onSubmit} className="c-calculate-emission">
+            <Box m={0.5}>
+                <FormControl fullWidth className="c-calculate-emission__region" >
+                    <InputLabel>Region</InputLabel>
+                    <Select className="c-calculate-emission__region" type="select" value={region} onChange={(event) => setRegion(event.target.value)}>
+                        {regionValues.map(regionValue => <MenuItem key={regionValue} value={regionValue}>{regionValue}</MenuItem>)}
+                    </Select>
+                </FormControl>
+            </Box>
+            <Box m={0.5}>
+                <FormControl fullWidth className="c-calculate-emission__instance-type">
+                    <InputLabel>Instance Type</InputLabel>
+                    <Select type="select" value={instanceType} onChange={(event) => setInstanceType(event.target.value)}>
+                        {instanceTypeValues.map(instanceTypeValue => <MenuItem key={instanceTypeValue} value={instanceTypeValue}>{instanceTypeValue}</MenuItem>)}
+                    </Select>
+                </FormControl>
+            </Box>
+            <Box m={0.5}>
+                <TextField fullWidth className="c-calculate-emission__uptime" label="Uptime" value={uptime} type="number" onChange={(event) => setUptime(event.target.value)}/>
+            </Box>
+            <Box m={0.5}>
+                <Button fullWidth size="large" className="c-calculate-emission__submit" type="submit" color="primary" variant="contained">{loading ? <CircularProgress size={25}/> : "Calculate Emission"}</Button>
+            </Box>
+        </form>
     );
 }

@@ -1,8 +1,11 @@
+import "normalize.css";
+
 import "./App.scss";
-import { Button } from "@material-ui/core";
-import RegionInput from "./components/Input/RegionInput";
-import InstanceTypeInput from "./components/Input/InstanceTypeInput";
-import UptimeInput from "./components/Input/UptimeInput";
+
+// import { Button } from "@material-ui/core";
+// import RegionInput from "./components/Input/RegionInput";
+// import InstanceTypeInput from "./components/Input/InstanceTypeInput";
+// import UptimeInput from "./components/Input/UptimeInput";
 import CalculateEmission from "./components/CalculateEmission";
 
 function App() {
