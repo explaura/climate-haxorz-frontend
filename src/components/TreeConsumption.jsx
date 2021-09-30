@@ -10,10 +10,10 @@ const TreeConsumption = () => {
 
 	am4core.useTheme(am4themes_animated);
 
-	var chartMin = 0;
-	var chartMax = 20;
+	const chartMin = 0;
+	const chartMax = 20;
 
-	var data = {
+	const data = {
 		score: 7.5,
 		gradingData: [
 			{
@@ -48,7 +48,7 @@ Grading Lookup
 	 */
 	function lookUpGrade(lookupScore, grades) {
 		// Only change code below this line
-		for (var i = 0; i < grades.length; i++) {
+		for (let i = 0; i < grades.length; i++) {
 			if (
 				grades[i].lowScore < lookupScore &&
 				grades[i].highScore >= lookupScore
@@ -59,7 +59,7 @@ Grading Lookup
 		return null;
 	}
 
-	var chart = am4core.create("chartdiv", am4charts.GaugeChart);
+	const chart = am4core.create("chartdiv", am4charts.GaugeChart);
 	chart.hiddenState.properties.opacity = 0;
 	chart.fontSize = 6;
 	chart.innerRadius = am4core.percent(80);
@@ -69,7 +69,7 @@ Grading Lookup
 	 * Normal axis
 	 */
 
-	var axis = chart.xAxes.push(new am4charts.ValueAxis());
+	const axis = chart.xAxes.push(new am4charts.ValueAxis());
 	axis.min = chartMin;
 	axis.max = chartMax;
 	axis.strictMinMax = true;
@@ -88,7 +88,7 @@ Grading Lookup
 	 * Axis for ranges
 	 */
 
-	var axis2 = chart.xAxes.push(new am4charts.ValueAxis());
+	const axis2 = chart.xAxes.push(new am4charts.ValueAxis());
 	axis2.min = chartMin;
 	axis2.max = chartMax;
 	axis2.strictMinMax = true;
@@ -106,7 +106,7 @@ Grading Lookup
 	 */
 
 	for (let grading of data.gradingData) {
-		var range = axis2.axisRanges.create();
+		const range = axis2.axisRanges.create();
 		range.axisFill.fill = am4core.color(grading.color);
 		range.axisFill.fillOpacity = 0.8;
 		range.axisFill.zIndex = -1;
@@ -124,13 +124,13 @@ Grading Lookup
 		range.label.fontSize = "0.9em";
 	}
 
-	var matchingGrade = lookUpGrade(data.score, data.gradingData);
+	const matchingGrade = lookUpGrade(data.score, data.gradingData);
 
 	/**
 	 * Label 1
 	 */
 
-	var label = chart.radarContainer.createChild(am4core.Label);
+	const label = chart.radarContainer.createChild(am4core.Label);
 	label.isMeasured = false;
 	label.fontSize = "3em";
 	label.x = am4core.percent(50);
@@ -144,7 +144,7 @@ Grading Lookup
 	 * Label 2
 	 */
 
-	var label2 = chart.radarContainer.createChild(am4core.Label);
+	const label2 = chart.radarContainer.createChild(am4core.Label);
 	label2.isMeasured = false;
 	label2.fontSize = "2em";
 	label2.horizontalCenter = "middle";
@@ -156,7 +156,7 @@ Grading Lookup
 	 * Hand
 	 */
 
-	var hand = chart.hands.push(new am4charts.ClockHand());
+	const hand = chart.hands.push(new am4charts.ClockHand());
 	hand.axis = axis2;
 	hand.innerRadius = am4core.percent(55);
 	hand.startWidth = 8;
@@ -167,8 +167,8 @@ Grading Lookup
 
 	hand.events.on("positionchanged", function(){
 		label.text = `${axis2.positionToValue(hand.currentPosition).toFixed(1)} trees`
-		var value2 = axis.positionToValue(hand.currentPosition);
-		var matchingGrade = lookUpGrade(axis.positionToValue(hand.currentPosition), data.gradingData);
+		const value2 = axis.positionToValue(hand.currentPosition);
+		const matchingGrade = lookUpGrade(axis.positionToValue(hand.currentPosition), data.gradingData);
 		label2.text = matchingGrade.title.toUpperCase();
 		label2.fill = am4core.color(matchingGrade.color);
 		label2.stroke = am4core.color(matchingGrade.color);
@@ -181,6 +181,8 @@ Grading Lookup
 			<script src="https://cdn.amcharts.com/lib/4/charts.js"/>
 			<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"/>
 			<div id="chartdiv"></div>
+
+
 		</div>
 	);
 };
