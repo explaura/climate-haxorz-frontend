@@ -13,15 +13,13 @@ am4core.useTheme(am4themes_animated);
 const TreeConsumption = () => {
 	const { emission } = useContext(EmissionContext);
   const chartRef = useRef(null);
-  // const chartRef = useRef(<div></div>);
-	// console.log("emission", emission?.score?.fiftyPercent);
 
   useLayoutEffect(() => {
     const score = emission?.running?.fiftyPercent ;
-    if(!score) return;
+    if (!score) return;
 
     const chartMin = 0;
-    const chartMax = 20;
+    const chartMax = 16000;
 
     const data = {
       score,
@@ -30,25 +28,25 @@ const TreeConsumption = () => {
           title: "Captain Planet",
           color: "#0f9747",
           lowScore: 0,
-          highScore: 4
+          highScore: 3500
         },
         {
           title: "Planeteer",
           color: "#b0d136",
-          lowScore: 4,
-          highScore: 8
+          lowScore: 3500,
+          highScore: 7000
         },
         {
           title: "Hoggish Greedly",
           color: "#fdae19",
-          lowScore: 8,
-          highScore: 16
+          lowScore: 7000,
+          highScore: 11000
         },
         {
           title: "Captain Pollution",
           color: "#ee1f25",
-          lowScore: 16,
-          highScore: 20
+          lowScore: 11000,
+          highScore: 16000
         }
       ]
     };
@@ -125,7 +123,6 @@ const TreeConsumption = () => {
       range.grid.strokeOpacity = 0;
       range.stroke = am4core.color(grading.color).lighten(-0.1);
       range.label.inside = true;
-      range.label.text = grading.title.toUpperCase();
       range.label.inside = true;
       range.label.location = 0.5;
       range.label.inside = true;
