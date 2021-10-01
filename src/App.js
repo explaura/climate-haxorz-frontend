@@ -14,6 +14,11 @@ function App() {
 
 	return (
     <div className="App">
+
+
+<script src="https://cdn.amcharts.com/lib/4/core.js"/>
+        <script src="https://cdn.amcharts.com/lib/4/charts.js"/>
+        <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"/>
         <div className="c-steps">
           <EmissionContext.Provider value={{ emission, setEmission }}>
             <PageContext.Provider value={{ activePage, setActivePage }}>
