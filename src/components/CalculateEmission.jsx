@@ -711,7 +711,7 @@ export default function CalculateEmission() {
                 <TextField fullWidth className="c-calculate-emission__uptime" label="Uptime" value={uptime} type="number" onChange={(event) => setUptime((event.target.value < 1 ? 1 : event.target.value))}/>
             </Box>
             <Box m={0.5}>
-                <Button fullWidth size="large" className="c-calculate-emission__submit" type="submit" color="primary" variant="contained">{loading ? <CircularProgress size={25}/> : "Calculate Emission"}</Button>
+                <Button fullWidth size="large" className="c-calculate-emission__submit" type="submit" color="primary" variant="outlined">{loading ? <CircularProgress size={25}/> : "Calculate Emission"}</Button>
             </Box>
         </form>
     );

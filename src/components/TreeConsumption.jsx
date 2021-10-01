@@ -51,6 +51,9 @@ const TreeConsumption = () => {
       ]
     };
 
+    const matchingGrade = lookUpGrade(data.score, data.gradingData);
+    if (!matchingGrade) return;
+
     /**
      * Grading Lookup
      */
@@ -130,8 +133,6 @@ const TreeConsumption = () => {
       range.label.paddingBottom = -5; // ~half font size
       range.label.fontSize = "0.9em";
     }
-
-    const matchingGrade = lookUpGrade(data.score, data.gradingData);
 
     /**
      * Label 1
